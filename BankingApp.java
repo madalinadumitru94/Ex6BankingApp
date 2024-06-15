@@ -48,6 +48,8 @@ public class BankingApp {
         StudentAccount s2 = new StudentAccount("ROBTRL2325", 500);
         SpendingAccount s3 = new SpendingAccount("ROBTRL2326", 500);
 
+        s3.deposit(200);
+
         try {
             s1.deposit(700);
         } catch (OperationNotSupportedException e) {
@@ -55,7 +57,11 @@ public class BankingApp {
         }
 
 
-        s1.withdraw(400);
+        try {
+            s1.withdraw(400);
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
 
         try {
             s2.deposit(400);

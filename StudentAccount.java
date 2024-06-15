@@ -19,9 +19,9 @@ public class StudentAccount extends BankAccount{
     }
 
     @Override
-    public void withdraw(int amount) {
+    public void withdraw(int amount) throws OperationNotSupportedException{
         if (amount > getBalance() ){
-            System.out.println("Fonduri insuficiente");
+            throw new OperationNotSupportedException("Fonduri insuficiente");
         } else {
             setBalance(getBalance()-amount);
         }

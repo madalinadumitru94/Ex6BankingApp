@@ -18,9 +18,9 @@ public class SpendingAccount extends BankAccount {
     }
 
     @Override
-    public void withdraw(int amount) {
+    public void withdraw(int amount) throws OperationNotSupportedException {
         if (amount > getBalance() + maxWithdrawalAmount){
-            System.out.println("Ai depasit limita de retragere");
+            throw new OperationNotSupportedException("Nu poti retrage mai mult decat "+ maxWithdrawalAmount);
         } else {
             setBalance(getBalance() - amount);
         }
