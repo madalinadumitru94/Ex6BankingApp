@@ -28,13 +28,15 @@ public class StudentAccount extends BankAccount{
     }
 
     @Override
-    public void deposit(int amount) {
+
+    public void deposit(int amount) throws OperationNotSupportedException {
         if (amount > maxDepositAmount ){
-            System.out.println("Ai depasit limita de depunere");
+            throw new OperationNotSupportedException("Nu poti depune mai mult decat "+ maxDepositAmount);
         } else {
             setBalance(getBalance()+amount);
         }
     }
+
 
     @Override
     public String toString() {

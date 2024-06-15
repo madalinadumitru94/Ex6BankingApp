@@ -1,7 +1,7 @@
 
 package PrincipiileOOP.Ex6bankingapp;
 
-public  class BankingApp {
+public class BankingApp {
     //Creează o aplicație de gestionare a conturilor deschise la o bancă pentru un client.
     //Clasa abstractă BankAccount
     //Atribute:
@@ -41,29 +41,48 @@ public  class BankingApp {
     //Clasa va avea doar metoda main(), unde se va instanția o persoană și se vor testa metodele pe care le poate face persoana (adăugare cont, deposit, etc.).
 
 
-
     public static void main(String[] args) {
         //instantiez persoane ca sa testez functionalitatile
 
-       StudentAccount s1 = new StudentAccount("ROBTRL2324",300);
-       StudentAccount s2 = new StudentAccount("ROBTRL2325",500);
-       SpendingAccount s3 = new SpendingAccount("ROBTRL2326",500);
-       s1.deposit(700);
+        StudentAccount s1 = new StudentAccount("ROBTRL2324", 300);
+        StudentAccount s2 = new StudentAccount("ROBTRL2325", 500);
+        SpendingAccount s3 = new SpendingAccount("ROBTRL2326", 500);
 
-       s1.withdraw(400);
+        try {
+            s1.deposit(700);
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
 
-       s2.deposit(400);
+
+        s1.withdraw(400);
+
+        try {
+            s2.deposit(400);
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
 
         Client client = new Client("Madalina", "Dumitru");
+
 
         client.addAccount(s1);
         client.addAccount(s3);
 
         client.listAccounts();
 
-        client.deposit(100, "ROBTRL2324");
+        try {
+            client.deposit(100, "ROBTRL2324");
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
         client.listAccounts();
-        client.withdraw(200, "ROBTRL2324");
+        try {
+            client.withdraw(200, "ROBTRL2324");
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
+
         client.checkAccountDetails("ROBTRL2324");
         client.checkAccountDetails("ROBTRL2324");
     }
